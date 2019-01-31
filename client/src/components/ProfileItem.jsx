@@ -1,26 +1,31 @@
 import React, { Component, Fragment } from 'react';
-import profile from '../assets/profile.png';
 
 class ProfileItem extends Component {
   render() {
+    const { title, text, img, links } = this.props;
+
     return (
       <Fragment>
-        <div className="card blue-grey darken-2">
+        <div className="card blue-grey darken-2 custom-hidden">
             <div className="card-image">
-                <img src={profile} alt="Yuri" className="custom-img" />
-                <span className="card-title">{this.props.title}</span>
+                <img src={img} alt="Yuri" className="custom-img" />
+                <span className="card-title">{title}</span>
                 <a className="btn-floating halfway-fab waves-effect waves-light red">
                     <i className="material-icons">add</i>
                 </a>
             </div>
             <div className="card-content white-text">
-                <p>{this.props.text}</p>
+                <p>{text}</p>
             </div>
             {(() => {
-                if (this.props.links) {
+                if (links) {
                     return (
                         <div className="card-action">
-                            <a href={this.props.links[0].url}>{this.props.links[0].text}</a>
+                            {links.map((link, i) => {
+                                return (
+                                    <a key={i} href={link.url}>{link.text}</a>
+                                );
+                            })}
                         </div>
                     );
                 }

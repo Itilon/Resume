@@ -4,6 +4,25 @@
 
 .custom-body .row {
     margin-bottom: 0;
+    padding: 28px 0 20px 0;
+}
+
+.custom-hidden {
+    opacity: 0;
+    transform: rotateY(-90deg);
+    transition: all 1.6s ease-in;
+}
+
+.custom-shown {
+    opacity: 1;
+    transform: rotateY(0deg);
+    transition: all 1.6s ease-in;
+}
+
+.custom-shown .card-title {
+    display: block;
+    width: 100%;
+    background: rgba(150, 150, 150, 0.6);
 }
 
 .custom-img {
