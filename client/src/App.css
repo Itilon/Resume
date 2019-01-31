@@ -1,0 +1,15 @@
+.custom-nav {
+    padding: 0 10px;
+}
+
+.custom-body .row {
+    margin-bottom: 0;
+}
+
+.custom-img {
+    filter: grayscale(60%);
+}
+
+.custom-img:hover {
+    filter: grayscale(40%);
+}
