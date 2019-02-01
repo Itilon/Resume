@@ -1,12 +1,16 @@
 const { Router } = require('express');
 
-const attachTo = (app) => {
+const attachTo = (app, data) => {
     const router = new Router();
 
+    const { items } = data;
+
     router
-        .get('/', (req, res) => {
-            res.json({msg: 'We are here'});
-        })
+        .get('/all', async (req, res) => {
+            const result = await items.getAll();
+
+            res.json(result);
+        });
 
     return router;
 };

@@ -1,6 +1,8 @@
 const init = (db) => {
+    const items = require('./items.data').init(require('./models/item.model').init(db));
+
     return Promise.resolve({
-        msg: 'Data Layer Accessed'
+        items
     });
 };
 

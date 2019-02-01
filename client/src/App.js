@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
+import axios from 'axios';
 import './App.css';
+
 import profile from './assets/profile.png';
 import languages from './assets/languages.png';
 import technologies from './assets/technologies.jpeg';
@@ -10,38 +12,19 @@ import Footer from './components/Footer';
 
 class App extends Component {
   state = {
-    items: [
-      { 
-        title: 'Who Am I',
-        text: 'My name is Yuri Ivanov and I enjoy coding. I am also a blogger with an experience in writing on a multitude of topics.',
-        links: [
-          {url: 'https://www.linkedin.com/in/yuri-ivanov-9a46a955/', text: 'Contact me on LinkedIn'},
-          {url: 'https://e-lect.net/', text: 'Visit my website'}
-        ],
-        img: profile
-      },
-      { 
-        title: 'What Languages Do I Know',
-        text: 'The short answer includes Javascript, C#, Typescript, HTML and CSS.',
-        img: languages
-      },
-      {
-        title: 'What Technologies Can I Work With',
-        text: 'Where should I start? I spent a lot of time learning to code backend applications with Node.js and Express.js.',
-        img: technologies
-      },
-      {
-        title: 'Do you want to know more?',
-        text: 'You can find some of the projects I have fun with on my GitHub page.',
-        links: [
-          {url: 'https://github.com/Itilon/', text: 'See my code on GitHub'}
-        ],
-        img: profile
-      }
-    ]
+    items: []
   }
 
-  componentDidMount() {
+  componentDidMount = async () => {
+    const items = await axios.get('http://localhost:5000/api/items/all');
+    const { data } = items;
+    data[0].img = profile;
+    data[1].img = languages;
+    data[2].img = technologies;
+    data[3].img = profile;
+
+    this.setState({ items: items.data })
+
     if (window.pageYOffset <= 200) {
       this._showElement(0);
     }
