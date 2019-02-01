@@ -2,9 +2,31 @@
     padding: 0 10px;
 }
 
+.custom-body {
+    background: #656db6;
+}
+
 .custom-body .row {
     margin-bottom: 0;
-    padding: 28px 0 20px 0;
+}
+
+.custom-body .row:first-child {
+    padding-top: 20px;
+}
+
+.custom-body .row:last-child {
+    padding-bottom: 20px;
+}
+
+.custom-right-col {
+    margin-left: -4px !important;
+    padding-bottom: 20px !important;
+    border-left: 4px solid #fff;
+}
+
+.custom-left-col {
+    padding-bottom: 20px !important;
+    border-right: 4px solid #fff;
 }
 
 .custom-hidden {
@@ -14,15 +36,26 @@
 }
 
 .custom-shown {
+    background: #7e381a;
     opacity: 1;
     transform: rotateY(0deg);
     transition: all 1.6s ease-in;
 }
 
+.custom-hidden.card,
+.custom-shown.card {
+    margin-top: 0;
+}
+
+.custom-hidden.card,
+.custom-shown.card {
+    margin-bottom: 0;
+}
+
 .custom-shown .card-title {
     display: block;
     width: 100%;
-    background: rgba(150, 150, 150, 0.6);
+    background: rgba(130, 173, 199, 0.6);
 }
 
 .custom-img {

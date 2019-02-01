@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
   render() {
     return (
       <nav>
         <div className="nav-wrapper indigo darken-4 custom-nav">
-          <a href="#" className="button-collapse show-on-large left" data-activates="mobile-nav">
-            <i className="material-icons">menu</i>
-          </a>
-          <a href="#" className="brand-logo center">
+          <Link to="/" className="brand-logo center">
             <i className="material-icons">school</i>
             myResume
-          </a>
+          </Link>
         </div>
       </nav>
     )
