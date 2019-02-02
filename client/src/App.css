@@ -6,6 +6,28 @@
     padding: 0 10px;
 }
 
+.custom-landing {
+    background-image: url('./assets/background.jpeg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.custom-overlay {
+    background: rgba(101, 109, 182, 0.4);
+    height: 100vh;
+}
+
+.custom-btn {
+    position: absolute;
+    top: 50vh;
+    left: calc(50% - 90px);
+    width: 180px;
+    color: #ffab40;
+}
+
 .custom-body {
     background: #656db6;
 }
@@ -26,18 +48,35 @@
     margin-left: -4px !important;
     padding-bottom: 20px !important;
     border-left: 4px solid #fff;
+    transition: all 1.6s ease-in;
 }
 
 .custom-left-col {
     padding-bottom: 20px !important;
     border-right: 4px solid #fff;
+    transition: all 1.6s ease-in;
 }
 
-.custom-right-col .card {
+.right-col-green {
+    margin-left: -4px !important;
+    padding-bottom: 20px !important;
+    border-left: 4px solid #26a69a;
+    transition: all 1.6s ease-in;
+}
+
+.left-col-green {
+    padding-bottom: 20px !important;
+    border-right: 4px solid #26a69a;
+    transition: all 1.6s ease-in;
+}
+
+.custom-right-col .card,
+.right-col-green .card {
     margin-left: 60px;
 }
 
-.custom-left-col .card {
+.custom-left-col .card,
+.left-col-green .card {
     margin-right: 60px;
 }
 
@@ -78,11 +117,25 @@
     filter: grayscale(40%);
 }
 
-.custom-card-point {
+.custom-show-card-btn {
     position: absolute;
     left: calc(50% - 22px);
     height: 40px;
     width: 40px;
     background: #fff;
     border-radius: 50%;
+    transition: all 1.6s ease-in;
+}
+
+.custom-show-card-btn:hover {
+    background: #ddd;
+}
+
+.custom-card-shown-btn {
+    position: absolute;
+    left: calc(50% - 22px);
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    transition: all 1.6s ease-in;
 }

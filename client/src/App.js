@@ -4,6 +4,7 @@ import './App.css';
 
 import Header from './components/Header';
 import Landing from './components/Landing';
+import Main from './components/Main';
 import Footer from './components/Footer';
 
 class App extends Component {
@@ -12,7 +13,8 @@ class App extends Component {
       <Router>
         <Fragment>
           <Header />
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/" component={ Landing } />
+          <Route exact path="/" component={ Main } />
           <Footer />
         </Fragment>
       </Router>
