@@ -1,3 +1,7 @@
+.container {
+    width: 80%;
+}
+
 .custom-nav {
     padding: 0 10px;
 }
@@ -27,6 +31,14 @@
 .custom-left-col {
     padding-bottom: 20px !important;
     border-right: 4px solid #fff;
+}
+
+.custom-right-col .card {
+    margin-left: 60px;
+}
+
+.custom-left-col .card {
+    margin-right: 60px;
 }
 
 .custom-hidden {
@@ -64,4 +76,13 @@
 
 .custom-img:hover {
     filter: grayscale(40%);
+}
+
+.custom-card-point {
+    position: absolute;
+    left: calc(50% - 22px);
+    height: 40px;
+    width: 40px;
+    background: #fff;
+    border-radius: 50%;
 }

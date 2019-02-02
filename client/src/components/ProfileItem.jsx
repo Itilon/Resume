@@ -2,14 +2,16 @@ import React, { Component, Fragment } from 'react';
 
 class ProfileItem extends Component {
   render() {
-    const { title, text, img, links } = this.props.item;
+    const { item: {_id, title, text, img, links, customView}, btnPosition } = this.props;
+
     return (
       <Fragment>
-        <div className="card z-depth-4 custom-hidden" onClick={this.closeCard}>
+        <span className="custom-card-point"></span>  
+        <div className={`card z-depth-4 ${customView}`}>
             <div className="card-image">
                 <img src={img} className="custom-img" />
                 <span className="card-title">{title}</span>
-                <button className="btn-floating halfway-fab waves-effect waves-light red">
+                <button className={`btn-floating halfway-fab waves-effect waves-light red ${btnPosition}`} onClick={this.props.closeCard.bind(this, _id)}>
                     <i className="material-icons">clear</i>
                 </button>
             </div>
@@ -29,15 +31,9 @@ class ProfileItem extends Component {
                     );
                 }
             })()}
-        </div>  
+        </div>
       </Fragment>
     )
-  }
-
-  closeCard = (e) => {
-    if (e.target.innerHTML === 'clear') {
-        console.log(this);
-    }
   }
 }
 
