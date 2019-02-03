@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .container {
     width: 80%;
 }
@@ -127,6 +131,11 @@
     transition: all 1.6s ease-in;
 }
 
+.custom-show-card-btn:active,
+.custom-show-card-btn:focus {
+    background: #fff;
+}
+
 .custom-show-card-btn:hover {
     background: #ddd;
 }
@@ -136,6 +145,12 @@
     left: calc(50% - 22px);
     height: 40px;
     width: 40px;
+    background: #f44336;
     border-radius: 50%;
     transition: all 1.6s ease-in;
+}
+
+.custom-card-shown-btn:active,
+.custom-card-shown-btn:focus {
+    background: #f44336;
 }

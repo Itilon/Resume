@@ -24,27 +24,25 @@ class Main extends Component {
         data.forEach(item => {
             item.customView = 'custom-hidden';
             item.customBtn = 'custom-show-card-btn';
+            item.icon = 'add';
+            item.iconColor = 'black-text';
         });
 
         this.setState({ items: items.data });
 
-        if (document.querySelector(`#btn-${data[0]._id}`).offsetTop - window.pageYOffset <= 200) {
-            this._showElement(this.state.items[0]);
-        }
+        this.state.items.forEach((item, i) => {
+            const itemOffset = document.querySelector(`#btn-${item._id}`).offsetTop;
+            const windowOffset = window.pageYOffset;
+            const num = 30 * i;
 
-        if (document.querySelector(`#btn-${data[1]._id}`).offsetTop - window.pageYOffset <= 200) {
-            this._showElement(this.state.items[1]);
-        }
+            if (this._checkPosition(itemOffset, windowOffset, num)) {
+                this._showElement(item);
+            } else {
+                this._hideElement(item);
+            }
+        });
 
-        if (document.querySelector(`#btn-${data[2]._id}`).offsetTop - window.pageYOffset <= 200) {
-            this._showElement(this.state.items[2]);
-        }
-
-        if (document.querySelector(`#btn-${data[2]._id}`).offsetTop - window.pageYOffset <= 200) {
-            this._showElement(this.state.items[2]);
-        }
-
-        this._onScroll(this.state);
+        this._onScroll(this.state.items);
     }
 
     showCard = (_id) => {
@@ -63,41 +61,28 @@ class Main extends Component {
         });
     }
 
-    _onScroll(state) {
-        const { items } = state;
+    _onScroll(items) {
 
         window.addEventListener('scroll', () => {
-            if (document.querySelector(`#btn-${items[0]._id}`).offsetTop - window.pageYOffset <= 260 &&
-                document.querySelector(`#btn-${items[0]._id}`).offsetTop - window.pageYOffset > 0) {
-                this._showElement(items[0]);
-                this._hideElement(items[2]);
-                this._hideElement(items[3]);
-            }
-
-            if (document.querySelector(`#btn-${items[1]._id}`).offsetTop - window.pageYOffset <= 290 &&
-                document.querySelector(`#btn-${items[1]._id}`).offsetTop - window.pageYOffset > 0) {
-                this._showElement(items[1]);
-                this._hideElement(items[3]);
-            }
-
-            if (document.querySelector(`#btn-${items[2]._id}`).offsetTop - window.pageYOffset <= 320 &&
-                document.querySelector(`#btn-${items[2]._id}`).offsetTop - window.pageYOffset > 0) {
-                this._showElement(items[2]);
-                this._hideElement(items[0]);
-            }
-
-            if (document.querySelector(`#btn-${items[3]._id}`).offsetTop - window.pageYOffset <= 350 &&
-                document.querySelector(`#btn-${items[3]._id}`).offsetTop - window.pageYOffset> 0) {
-                this._showElement(items[3]);
-                this._hideElement(items[1]);
-                this._hideElement(items[0]);
-            }
+            items.forEach((item, i) => {
+                const itemOffset = document.querySelector(`#btn-${item._id}`).offsetTop;
+                const windowOffset = window.pageYOffset;
+                const num = 30 * i;
+    
+                if (this._checkPosition(itemOffset, windowOffset, num)) {
+                    this._showElement(item);
+                } else {
+                    this._hideElement(item);
+                }
+            });
         });
     }
 
     _showElement(item) {
         item.customView = 'custom-shown';
         item.customBtn = 'custom-card-shown-btn';
+        item.icon = 'clear';
+        item.iconColor = 'white-text';
         this.setState({ item });
 
         if (document.querySelector(`#row-${item._id} .custom-right-col`)) {
@@ -114,6 +99,8 @@ class Main extends Component {
     _hideElement(item) {
         item.customView = 'custom-hidden';
         item.customBtn = 'custom-show-card-btn';
+        item.icon = 'add';
+        item.iconColor = 'black-text'
         this.setState({ item });
 
         if (document.querySelector(`#row-${item._id} .right-col-green`)) {
@@ -125,6 +112,15 @@ class Main extends Component {
             leftColumn.classList.remove('left-col-green');
             leftColumn.classList.add('custom-left-col');
         }
+    }
+
+    _checkPosition(firstPosition, secondPosition, num) {
+        if (firstPosition - secondPosition <= 270 + num &&
+            firstPosition - secondPosition > 0) {
+                return true;
+            }
+
+        return false;
     }
 
     render() {
