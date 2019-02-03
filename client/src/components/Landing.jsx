@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import './Landing.css';
 
 class Landing extends Component {
   render() {
     return (
-      <div className="custom-landing">
-        <div className="custom-overlay">
+      <div className="landing-background">
+        <div className="landing-overlay">
             <button 
-                className="btn waves-effect waves-light indigo darken-2 z-depth-4 custom-btn"
+                className="btn waves-effect waves-light indigo darken-2 z-depth-4 landing-btn"
                 onClick={this.scrollDown}
             >
                 Click Me

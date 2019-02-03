@@ -21,13 +21,6 @@ class Main extends Component {
         data[2].img = technologies;
         data[3].img = profile;
 
-        data.forEach(item => {
-            item.customView = 'custom-hidden';
-            item.customBtn = 'custom-show-card-btn';
-            item.icon = 'add';
-            item.iconColor = 'black-text';
-        });
-
         this.setState({ items: items.data });
 
         this.state.items.forEach((item, i) => {
@@ -79,39 +72,37 @@ class Main extends Component {
     }
 
     _showElement(item) {
-        item.customView = 'custom-shown';
-        item.customBtn = 'custom-card-shown-btn';
+        item.view = 'custom-shown';
+        item.button = 'custom-card-shown-btn';
         item.icon = 'clear';
         item.iconColor = 'white-text';
         this.setState({ item });
 
         if (document.querySelector(`#row-${item._id} .custom-right-col`)) {
-            const rightColumn = document.querySelector(`#row-${item._id} .custom-right-col`);
-            rightColumn.classList.remove('custom-right-col');
-            rightColumn.classList.add('right-col-green');
+            this._changeClass(`#row-${item._id} .custom-right-col`, 'custom-right-col', 'right-col-green');
         } else if (document.querySelector(`#row-${item._id} .custom-left-col`)) {
-            const leftColumn = document.querySelector(`#row-${item._id} .custom-left-col`);
-            leftColumn.classList.remove('custom-left-col');
-            leftColumn.classList.add('left-col-green');
+            this._changeClass(`#row-${item._id} .custom-left-col`, 'custom-left-col', 'left-col-green');
         }
     }
 
     _hideElement(item) {
-        item.customView = 'custom-hidden';
-        item.customBtn = 'custom-show-card-btn';
+        item.view = 'custom-hidden';
+        item.button = 'custom-show-card-btn';
         item.icon = 'add';
         item.iconColor = 'black-text'
         this.setState({ item });
 
         if (document.querySelector(`#row-${item._id} .right-col-green`)) {
-            const rightColumn = document.querySelector(`#row-${item._id} .right-col-green`);
-            rightColumn.classList.remove('right-col-green');
-            rightColumn.classList.add('custom-right-col');
+            this._changeClass(`#row-${item._id} .right-col-green`, 'right-col-green', 'custom-right-col');
         } else if (document.querySelector(`#row-${item._id} .left-col-green`)) {
-            const leftColumn = document.querySelector(`#row-${item._id} .left-col-green`);
-            leftColumn.classList.remove('left-col-green');
-            leftColumn.classList.add('custom-left-col');
+            this._changeClass(`#row-${item._id} .left-col-green`, 'left-col-green', 'custom-left-col');
         }
+    }
+
+    _changeClass(selector, baseClass, newClass) {
+        const el = document.querySelector(selector);
+        el.classList.remove(baseClass);
+        el.classList.add(newClass);
     }
 
     _checkPosition(firstPosition, secondPosition, num) {
@@ -137,7 +128,7 @@ class Main extends Component {
                                     <div className="col l6 m12 custom-right-col">
                                         <ProfileItem
                                             item={item}
-                                            btnPosition="right"
+                                            btnPosition="arrow-right"
                                             showCard={this.showCard}
                                             hideCard={this.hideCard}
                                         />

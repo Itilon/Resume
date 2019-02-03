@@ -6,32 +6,6 @@ html {
     width: 80%;
 }
 
-.custom-nav {
-    padding: 0 10px;
-}
-
-.custom-landing {
-    background-image: url('./assets/background.jpeg');
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-}
-
-.custom-overlay {
-    background: rgba(101, 109, 182, 0.4);
-    height: 100vh;
-}
-
-.custom-btn {
-    position: absolute;
-    top: 50vh;
-    left: calc(50% - 90px);
-    width: 180px;
-    color: #ffab40;
-}
-
 .custom-body {
     background: #656db6;
 }
