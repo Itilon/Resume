@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import './ProfileItem.css';
 
 class ProfileItem extends Component {
   render() {

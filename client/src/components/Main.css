@@ -1,0 +1,55 @@
+.container {
+    width: 80%;
+}
+
+.custom-body {
+    background: #656db6;
+}
+
+.custom-body .row {
+    margin-bottom: 0;
+}
+
+.custom-body .row:first-child {
+    padding-top: 20px;
+}
+
+.custom-body .row:last-child {
+    padding-bottom: 20px;
+}
+
+.custom-right-col,
+.custom-left-col,
+.right-col-green,
+.left-col-green {
+    padding-bottom: 20px !important;
+    transition: all 1.6s ease-in;
+}
+
+.custom-right-col {
+    margin-left: -4px !important;
+    border-left: 4px solid #fff;
+}
+
+.custom-left-col {
+    border-right: 4px solid #fff;
+}
+
+.right-col-green {
+    margin-left: -4px !important;
+    border-left: 4px solid #26a69a;
+}
+
+.left-col-green {
+    border-right: 4px solid #26a69a;
+}
+
+.custom-right-col .card,
+.right-col-green .card {
+    margin-left: 60px;
+}
+
+.custom-left-col .card,
+.left-col-green .card {
+    margin-right: 60px;
+}
