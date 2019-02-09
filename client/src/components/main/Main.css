@@ -53,3 +53,23 @@
 .left-col-green .card {
     margin-right: 60px;
 }
+
+@media(max-width: 600px) {
+    .custom-right-col {
+        border-right: 4px solid #fff;
+        border-left: none;
+    }
+
+    .right-col-green {
+        border-right: 4px solid #26a69a;
+        border-left: none;
+    }
+
+    .custom-right-col .card,
+    .right-col-green .card,
+    .custom-left-col .card,
+    .left-col-green .card {
+        margin-right: 20px;
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,15 @@
+.transparent {
+    opacity: 0.6;
+    transition: opacity 0.8s ease-in;
+}
+
+.scrolled {
+    color: #ffab40 !important;
+    transition: color 0.8s ease-in;
+}
+
+@media(max-width: 480px) {
+    nav .brand-logo {
+        font-size: 1.5rem;
+    }
+}

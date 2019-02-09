@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Main.css';
 
-import ProfileItem from './ProfileItem';
-
-import profile from '../assets/profile.png';
-import languages from '../assets/languages.png';
-import technologies from '../assets/technologies.jpeg';
-
+import Item from '../item/Item';
 
 class Main extends Component {
     state = {
@@ -17,12 +12,8 @@ class Main extends Component {
     componentDidMount = async () => {
         const items = await axios.get('http://localhost:5000/api/items/all');
         const { data } = items;
-        data[0].img = profile;
-        data[1].img = languages;
-        data[2].img = technologies;
-        data[3].img = profile;
 
-        this.setState({ items: items.data });
+        this.setState({ items: data });
 
         this.state.items.forEach((item, i) => {
             const itemOffset = document.querySelector(`#btn-${item._id}`).offsetTop;
@@ -73,10 +64,10 @@ class Main extends Component {
     }
 
     _showElement(item) {
-        item.view = 'custom-shown';
-        item.button = 'custom-card-shown-btn';
-        item.icon = 'clear';
-        item.iconColor = 'white-text';
+        item.layout.view = 'custom-shown';
+        item.layout.button = 'custom-card-shown-btn';
+        item.layout.icon = 'clear';
+        item.layout.color = 'white-text';
         this.setState({ item });
 
         if (document.querySelector(`#row-${item._id} .custom-right-col`)) {
@@ -87,10 +78,10 @@ class Main extends Component {
     }
 
     _hideElement(item) {
-        item.view = 'custom-hidden';
-        item.button = 'custom-show-card-btn';
-        item.icon = 'add';
-        item.iconColor = 'black-text'
+        item.layout.view = 'custom-hidden';
+        item.layout.button = 'custom-show-card-btn';
+        item.layout.icon = 'add';
+        item.layout.color = 'black-text'
         this.setState({ item });
 
         if (document.querySelector(`#row-${item._id} .right-col-green`)) {
@@ -127,7 +118,7 @@ class Main extends Component {
                                     <div className="col l6 m12">
                                     </div>
                                     <div className="col l6 m12 custom-right-col">
-                                        <ProfileItem
+                                        <Item
                                             item={item}
                                             btnPosition="arrow-right"
                                             showCard={this.showCard}
@@ -141,7 +132,7 @@ class Main extends Component {
                         return (
                             <div id={`row-${item._id}`} className="row" key={i}>
                                 <div className="col l6 m12 custom-left-col">
-                                    <ProfileItem
+                                    <Item
                                         item={item}
                                         btnPosition="left"
                                         showCard={this.showCard}

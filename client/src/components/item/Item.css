@@ -60,3 +60,10 @@
 .custom-card-shown-btn:hover {
     background: #d32f2f;
 }
+
+@media(max-width: 600px) {
+    .custom-show-card-btn,
+    .custom-card-shown-btn {
+        left: calc(90% - 22px);
+    }
+}
