@@ -10,15 +10,15 @@ class Main extends Component {
     }
 
     componentDidMount = async () => {
-        const items = await axios.get('http://localhost:5000/api/items/all');
-        const { data } = items;
+        const resume = await axios.get('http://localhost:5000/api/items/all');
+        this.setState({ items: resume.data });
 
-        this.setState({ items: data });
+        const { items } = this.state;
 
-        this.state.items.forEach((item, i) => {
+        items.forEach((item, i) => {
             const itemOffset = document.querySelector(`#btn-${item._id}`).offsetTop;
             const windowOffset = window.pageYOffset;
-            const num = 30 * i;
+            const num = 15 * i;
 
             if (this._checkPosition(itemOffset, windowOffset, num)) {
                 this._showElement(item);
@@ -27,23 +27,7 @@ class Main extends Component {
             }
         });
 
-        this._onScroll(this.state.items);
-    }
-
-    showCard = (_id) => {
-        this.state.items.forEach((item) => {
-            if (item._id === _id) {
-                this._showElement(item);
-            }
-        });
-    }
-
-    hideCard = (_id) => {
-        this.state.items.forEach((item) => {
-            if (item._id === _id) {
-                this._hideElement(item);
-            }
-        });
+        this._onScroll(items);
     }
 
     _onScroll(items) {
@@ -52,7 +36,7 @@ class Main extends Component {
             items.forEach((item, i) => {
                 const itemOffset = document.querySelector(`#btn-${item._id}`).offsetTop;
                 const windowOffset = window.pageYOffset;
-                const num = 30 * i;
+                const num = 15 * i;
     
                 if (this._checkPosition(itemOffset, windowOffset, num)) {
                     this._showElement(item);
@@ -64,11 +48,10 @@ class Main extends Component {
     }
 
     _showElement(item) {
-        item.layout.view = 'custom-shown';
-        item.layout.button = 'custom-card-shown-btn';
-        item.layout.icon = 'clear';
-        item.layout.color = 'white-text';
-        this.setState({ item });
+        this._changeClass(`#row-${item._id} .card`, 'custom-hidden', 'custom-shown');
+        this._changeClass(`#btn-${item._id}`, 'custom-show-card-btn', 'custom-card-shown-btn');
+        this._changeClass(`#btn-${item._id} .material-icons`, 'black-text', 'white-text');
+        document.querySelector(`#btn-${item._id} .material-icons`).innerHTML = 'clear';
 
         if (document.querySelector(`#row-${item._id} .custom-right-col`)) {
             this._changeClass(`#row-${item._id} .custom-right-col`, 'custom-right-col', 'right-col-green');
@@ -78,11 +61,10 @@ class Main extends Component {
     }
 
     _hideElement(item) {
-        item.layout.view = 'custom-hidden';
-        item.layout.button = 'custom-show-card-btn';
-        item.layout.icon = 'add';
-        item.layout.color = 'black-text'
-        this.setState({ item });
+        this._changeClass(`#row-${item._id} .card`, 'custom-shown', 'custom-hidden');
+        this._changeClass(`#btn-${item._id}`, 'custom-card-shown-btn', 'custom-show-card-btn');
+        this._changeClass(`#btn-${item._id} .material-icons`, 'white-text', 'black-text');
+        document.querySelector(`#btn-${item._id} .material-icons`).innerHTML = 'add';
 
         if (document.querySelector(`#row-${item._id} .right-col-green`)) {
             this._changeClass(`#row-${item._id} .right-col-green`, 'right-col-green', 'custom-right-col');
@@ -121,8 +103,6 @@ class Main extends Component {
                                         <Item
                                             item={item}
                                             btnPosition="arrow-right"
-                                            showCard={this.showCard}
-                                            hideCard={this.hideCard}
                                         />
                                     </div>
                                 </div>
@@ -135,8 +115,6 @@ class Main extends Component {
                                     <Item
                                         item={item}
                                         btnPosition="left"
-                                        showCard={this.showCard}
-                                        hideCard={this.hideCard}
                                     />
                                 </div>
                                 <div className="col l6 m12">
